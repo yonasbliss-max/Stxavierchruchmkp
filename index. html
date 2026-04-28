@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>St Xavier Church</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:#0a0a0a;
+  color:white;
+}
+
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:15px 30px;
+  background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+
+.navbar span{
+  margin-left:15px;
+  cursor:pointer;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  background:url('IMG_20260403_191227.jpg') center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:40px;
+}
+
+.hero button{
+  margin-top:20px;
+  padding:12px 25px;
+  border:none;
+  background:gold;
+  border-radius:25px;
+  cursor:pointer;
+}
+
+/* SECTION */
+.section{
+  padding:80px 20px;
+  text-align:center;
+}
+
+/* CARDS */
+.card{
+  display:inline-block;
+  width:250px;
+  margin:15px;
+  padding:20px;
+  background:rgba(255,255,255,0.1);
+  border-radius:15px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.05);
+  background:gold;
+  color:black;
+}
+
+/* HISTORY */
+.history{
+  max-width:800px;
+  margin:auto;
+  line-height:1.7;
+}
+
+/* GALLERY */
+.gallery{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.gallery img{
+  width:200px;
+  margin:10px;
+  border-radius:15px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.gallery img:hover{
+  transform:scale(1.1);
+}
+
+/* POPUP */
+#popup{
+  display:none;
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.95);
+  backdrop-filter:blur(8px);
+  text-align:center;
+  z-index:999;
+}
+
+#popup img{
+  margin-top:5%;
+  max-width:90%;
+  max-height:85%;
+  border-radius:15px;
+}
+
+.close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:25px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+.footer{
+  padding:20px;
+  background:black;
+  text-align:center;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .gallery img{
+    width:90%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <h3>Church</h3>
+  <div>
+    <span onclick="scrollToSection('home')">Home</span>
+    <span onclick="scrollToSection('history')">History</span>
+    <span onclick="scrollToSection('gallery')">Photos</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div id="home" class="hero">
+  <div>
+    <h1>St Xavier Church</h1>
+    <p>Welcome 🙏</p>
+    <button onclick="scrollToSection('history')">Explore</button>
+  </div>
+</div>
+
+<!-- HISTORY -->
+<div id="history" class="section">
+  <h2>History</h2>
+  <div class="history">
+    <p>
+    இங்க உங்க church history text paste பண்ணிக்கோ டா.
+    </p>
+  </div>
+</div>
+
+<!-- CARDS -->
+<div class="section">
+  <h2>Explore</h2>
+  <div class="card">📖 History</div>
+  <div class="card">🙏 Prayer</div>
+  <div class="card">📍 Location</div>
+</div>
+
+<!-- GALLERY -->
+<div id="gallery" class="section">
+  <h2>Gallery</h2>
+
+  <div class="gallery">
+    <img src="IMG_20260403_191227.jpg" onclick="openImg(this.src)">
+    <img src="IMG_20260403_191620.jpg" onclick="openImg(this.src)">
+    <img src="IMG_20260403_190227.jpg" onclick="openImg(this.src)">
+    <img src="IMG_20260403_191000.jpg" onclick="openImg(this.src)">
+  </div>
+</div>
+
+<!-- POPUP -->
+<div id="popup" onclick="closeImg()">
+  <span class="close">✖</span>
+  <img id="full">
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  © 2026 St Xavier Church
+</div>
+
+<script>
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+function openImg(src){
+  document.getElementById("popup").style.display="block";
+  document.getElementById("full").src = src;
+}
+
+function closeImg(){
+  document.getElementById("popup").style.display="none";
+}
+</script>
+
+</body>
+</html>
