@@ -212,8 +212,15 @@ body{
 
 <!-- HISTORY -->
 <div id="history" class="section">
+  <h2>
+    History 
+    <span onclick="speakTamil()" style="cursor:pointer;">🔊</span>
+  </h2>
+
+
   <h2>History</h2>
   <div class="history">
+    
     <p>
     சங்கத்தமிழ் வளர்த்த மதுரை மாநகரின் மேற்பகுதியில், மஞ்சளாறு, மருதாநதி, வைகை போன்ற நதிகளால் வளம்கொழித்து பச்சைப்பசேலென கண்களுக்கு விருந்தளித்து, வெற்றிலைக்குப் பெயர்போன வத்தலக்குண்டின் அருகில், இறைவழிபாட்டில் சிறந்து, கோயில்கள் பலவற்றைத் தன்னகத்தே கொண்ட, மேலக்கோவில்பட்டி என அழைக்கப்படும் புண்ணிய பூமியில், உலகம் போற்றும் புனிதர், நமது இந்தியத் திருநாட்டின் மறைபணியாளர் புனித பிரான்சிஸ் சவேரியார், படை வீரர்களுக்கு பாதுகாவலராய், காலரா போன்ற உயிர்க்கொல்லி நோய் தீர்க்கும் மருத்துவராய், இன்னவரம் வேண்டுமென்று என்ன வரம் கேட்டாலும் உவப்புடன் நிறைவேற்றி வரும் மேலக்கோவில்பட்டி புனித பிரான்சிஸ் சவேரியார் ஆலயம் மற்றும் ஊர் பற்றிய கண்ணோட்டம்.
 
@@ -423,6 +430,34 @@ function openImg(src){
 function closeImg(){
   document.getElementById("popup").style.display="none";
 }
+
+  function speakTamil(){
+
+  let text = document.getElementById("historyText").innerText;
+
+  let speech = new SpeechSynthesisUtterance(text);
+  speech.lang = "ta-IN";
+
+  let voices = window.speechSynthesis.getVoices();
+
+  let femaleVoice = voices.find(v =>
+    v.lang.includes("ta") &&
+    (v.name.toLowerCase().includes("female") || v.name.toLowerCase().includes("girl"))
+  );
+
+  if(femaleVoice){
+    speech.voice = femaleVoice;
+  }
+
+  speech.pitch = 1.5;
+  speech.rate = 0.9;
+
+  window.speechSynthesis.speak(speech);
+}
+
+window.speechSynthesis.onvoiceschanged = () => {
+  window.speechSynthesis.getVoices();
+};
 </script>
 
 </body>
