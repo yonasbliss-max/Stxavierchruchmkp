@@ -3,28 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>St Xavier Church Melainagar</title>
-
-<link href=https://maps.app.goo.gl/Jfa7rju1d8adhF548 family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-  
-  .player{
-  margin-top:20px;
-  opacity:0.5;
-  border-radius:20px;
-}
-
-.player:hover{
-  opacity:1;
-}
 
 body{
-  font-family:'Poppins',handwriting;
-  background:#0a0a0a;
+  font-family:sans-serif;
+  background:linear-gradient(135deg,#000,#0f0c29,#1a1a2e);
   color:white;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+
+/* BACKGROUND GLOW */
+body::before{
+  content:'';
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:radial-gradient(circle at 30% 30%, rgba(0,255,255,0.15), transparent 40%),
+             radial-gradient(circle at 70% 70%, rgba(255,0,255,0.1), transparent 40%);
+  z-index:-1;
 }
 
 /* NAVBAR */
@@ -34,14 +34,17 @@ body{
   display:flex;
   justify-content:space-between;
   padding:15px 30px;
-  background:rgba(0,0,0,0.5);
-  backdrop-filter:blur(10px);
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(15px);
   z-index:1000;
 }
 
 .navbar span{
   margin-left:15px;
   cursor:pointer;
+}
+.navbar span:hover{
+  color:cyan;
 }
 
 /* HERO */
@@ -52,25 +55,58 @@ body{
   justify-content:center;
   align-items:center;
   text-align:center;
+  position:relative;
+}
+
+.hero::after{
+  content:'';
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
 }
 
 .hero h1{
   font-size:40px;
+  z-index:1;
+  text-shadow:0 0 20px gold;
 }
 
 .hero button{
-  margin-top:20px;
+  margin:10px;
   padding:12px 25px;
   border:none;
-  background:gold;
   border-radius:25px;
+  background:rgba(255,255,255,0.1);
+  color:white;
+  backdrop-filter:blur(10px);
   cursor:pointer;
+}
+
+.hero button:hover{
+  box-shadow:0 0 20px cyan;
+  transform:scale(1.1);
 }
 
 /* SECTION */
 .section{
   padding:80px 20px;
   text-align:center;
+  opacity:0;
+  transform:translateY(50px);
+  transition:1s;
+}
+
+.section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* HISTORY */
+.history{
+  max-width:800px;
+  margin:auto;
+  line-height:1.8;
 }
 
 /* CARDS */
@@ -80,21 +116,10 @@ body{
   margin:15px;
   padding:20px;
   background:rgba(255,255,255,0.1);
-  border-radius:15px;
-  transition:0.3s;
+  border-radius:20px;
 }
-
 .card:hover{
-  transform:translateY(-10px) scale(1.05);
-  background:gold;
-  color:black;
-}
-
-/* HISTORY */
-.history{
-  max-width:800px;
-  margin:auto;
-  line-height:1.7;
+  box-shadow:0 0 20px gold;
 }
 
 /* GALLERY */
@@ -109,21 +134,12 @@ body{
   margin:10px;
   border-radius:15px;
   cursor:pointer;
-  transition:0.3s;
 }
 
 .gallery img:hover{
   transform:scale(1.1);
+  box-shadow:0 0 20px cyan;
 }
-
-  /* GROUPS */
-.group{
-  max-width:800px;
-  margin:auto;
-  line-height:1.7;
-}
-
-  
 
 /* POPUP */
 #popup{
@@ -132,23 +148,24 @@ body{
   width:100%;
   height:100%;
   background:rgba(0,0,0,0.95);
-  backdrop-filter:blur(8px);
-  text-align:center;
+  backdrop-filter:blur(10px);
+  justify-content:center;
+  align-items:center;
   z-index:999;
 }
 
 #popup img{
-  margin-top:5%;
   max-width:90%;
   max-height:85%;
-  border-radius:15px;
+  border-radius:20px;
+  box-shadow:0 0 40px cyan;
 }
 
 .close{
   position:absolute;
   top:20px;
   right:30px;
-  font-size:25px;
+  font-size:30px;
   cursor:pointer;
 }
 
@@ -157,13 +174,6 @@ body{
   padding:20px;
   background:black;
   text-align:center;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-  .gallery img{
-    width:90%;
-  }
 }
 </style>
 </head>
@@ -174,49 +184,28 @@ body{
 <div class="navbar">
   <h3>God Bless You</h3>
   <div>
-    <a href="https://youtube.com/@st.xavierschurchmkp" target="_blank">
-  <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" 
-       style="width:30px; margin-left:15px; cursor:pointer;">
-    </a>
-    <a href="https://www.instagram.com/st_xaviers_church_mkp" target="_blank">
-  <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" 
-       style="width:30px; margin-left:10px; cursor:pointer;">
-    </a>
-    <a href="https://maps.app.goo.gl/ZMmCUwhsEVbZMuxx5" target="_blank">
-  <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png"
-       style="width:30px; margin-left:10px; cursor:pointer;">
-    </a>
     <span onclick="scrollToSection('home')">Home</span>
     <span onclick="scrollToSection('history')">History</span>
-    
-    
+    <span onclick="scrollToSection('gallery')">Gallery</span>
   </div>
 </div>
 
 <!-- HERO -->
 <div id="home" class="hero">
   <div>
-
-    <h1> புனித சவேரியார் ஆலயம் மேலைநகர் </h1>
-    
-    <button onclick="scrollToSection('history')"> ஆலய வரலாறு</button>
-    <button onclick="scrollToSection('gallery')"> புகைப்படங்கள்</button>
-    <button onclick="scrollToSection('groups')"> ஆலய குழுக்கள்</button>
-    <button onclick="scrollToSection('Holy mass')"> திருப்பலிகள்</button>
-   <button onclick="scrollToSection('Festival')"> திருவிழாக்கள்</button>
-  
-    
-  </div>
+    <h1>புனித சவேரியார் ஆலயம் மேலைநகர்</h1>
+    <button onclick="scrollToSection('history')">ஆலய வரலாறு</button>
+    <button onclick="scrollToSection('gallery')">புகைப்படங்கள்</button>
+    <button onclick="scrollToSection('groups')">ஆலய குழுக்கள்</button>
   </div>
 </div>
 
 <!-- HISTORY -->
 <div id="history" class="section">
-   <h2>History</h2>
+  <h2>History</h2>
   <div class="history">
-    
     <p>
-    சங்கத்தமிழ் வளர்த்த மதுரை மாநகரின் மேற்பகுதியில், மஞ்சளாறு, மருதாநதி, வைகை போன்ற நதிகளால் வளம்கொழித்து பச்சைப்பசேலென கண்களுக்கு விருந்தளித்து, வெற்றிலைக்குப் பெயர்போன வத்தலக்குண்டின் அருகில், இறைவழிபாட்டில் சிறந்து, கோயில்கள் பலவற்றைத் தன்னகத்தே கொண்ட, மேலக்கோவில்பட்டி என அழைக்கப்படும் புண்ணிய பூமியில், உலகம் போற்றும் புனிதர், நமது இந்தியத் திருநாட்டின் மறைபணியாளர் புனித பிரான்சிஸ் சவேரியார், படை வீரர்களுக்கு பாதுகாவலராய், காலரா போன்ற உயிர்க்கொல்லி நோய் தீர்க்கும் மருத்துவராய், இன்னவரம் வேண்டுமென்று என்ன வரம் கேட்டாலும் உவப்புடன் நிறைவேற்றி வரும் மேலக்கோவில்பட்டி புனித பிரான்சிஸ் சவேரியார் ஆலயம் மற்றும் ஊர் பற்றிய கண்ணோட்டம்.
+   சங்கத்தமிழ் வளர்த்த மதுரை மாநகரின் மேற்பகுதியில், மஞ்சளாறு, மருதாநதி, வைகை போன்ற நதிகளால் வளம்கொழித்து பச்சைப்பசேலென கண்களுக்கு விருந்தளித்து, வெற்றிலைக்குப் பெயர்போன வத்தலக்குண்டின் அருகில், இறைவழிபாட்டில் சிறந்து, கோயில்கள் பலவற்றைத் தன்னகத்தே கொண்ட, மேலக்கோவில்பட்டி என அழைக்கப்படும் புண்ணிய பூமியில், உலகம் போற்றும் புனிதர், நமது இந்தியத் திருநாட்டின் மறைபணியாளர் புனித பிரான்சிஸ் சவேரியார், படை வீரர்களுக்கு பாதுகாவலராய், காலரா போன்ற உயிர்க்கொல்லி நோய் தீர்க்கும் மருத்துவராய், இன்னவரம் வேண்டுமென்று என்ன வரம் கேட்டாலும் உவப்புடன் நிறைவேற்றி வரும் மேலக்கோவில்பட்டி புனித பிரான்சிஸ் சவேரியார் ஆலயம் மற்றும் ஊர் பற்றிய கண்ணோட்டம்.
 
 சுமார் 250 ஆண்டுகளுக்கு முன்பு தமிழ்நாட்டின் நெற்களஞ்சியம் என அழைக்கப்படும் தஞ்சை மாவட்டம், மும்மாரி முறை தவறி அளவுக்கு அதிகமாக பொழிந்ததால், சோறுடை நாடு தஞ்சை கண்ணுக்கு எட்டிய தூரம்வரை மழை நீரால் மூழ்கியது. அதனால் மக்களின் இயல்பு வாழ்க்கை பாதிக்கப்பட்டது. எனவே அவர்கள் தங்களின் நிலபுலன்கள், உடைமைகள் அனைத்தையும் விட்டுவிட்டு வாழ்வதற்குத் தகுந்த சூழல் உள்ள இடம் தேடிச் சென்றனர்
 
@@ -271,18 +260,12 @@ body{
   </div>
 </div>
 
-<!-- CARDS -->
-<div class="section">
-  <h2>Explore</h2>
-  <div class="card">📖 come and visit our parish </div>
-  <div class="card">📍Melakovilpatti, Batlagundu, Dindigul.</div>
-</div>
-
 <!-- GALLERY -->
 <div id="gallery" class="section">
   <h2>Gallery</h2>
 
   <div class="gallery">
+      
     <img src="DDIZTuZT3u7(WEBP)_2.webp">
 <img src="DDIZTuZT3u7(WEBP)_3.webp">
 <img src="DDIZTuZT3u7(WEBP)_4.webp">
@@ -318,91 +301,10 @@ body{
 <img src="mkp9.jpg">
     <img src="mkp10.jpg">
 
+      </div>
+
+  </div>
 </div>
-
-  <!-- GROUPS-->
-  
-<div id="groups" class="section">
-  <h2>groups</h2>
-  <div class="groups">
-    <u1> 
-      
-    <li>சவேரியார் அன்பியம்</li>
-
-<li>அருளானந்தர் அன்பியம்</li>
-
-<li>அந்தோனியார் அன்பியம்</li>
-
-<li>அன்னை மரியாள் அன்பியம்</li>
-
-<li>குழந்தை இயேசு அன்பியம்</li>
-
-<li>சூசையப்பர் அன்பியம்</li>
-
-<li>மகா ஆச்சரிய அன்னை அன்பியம்</li>
-
-<li>அன்பிய பொறுப்பாளர்கள்</li>
-
-<li>சவேரியார் அன்னதான குழு</li>
-
-<li>திருத்தல திருப்பணிக்குழு</li>
-
-<li>சேசிலியா அம்மாள் பாடகர் குழு</li>
-
-<li>சவேரியார் இளைஞர்கள் குழு</li>
-
-<li>பொதுநல பணிக்குழு</li>
-
-      <li> ஊர் பெரியோர்கள் </li>
-
-<li>முன்னாள் இன்னாள் இராணுவ வீரர்கள்</li>
-
-<li> ஜோன் ஆஃப ஆர்க் இளம் பெண்கள் </li>
-
-<li> ஆந்திரே நண்பர்கள்</li>
-
-<li>பேசில்மோரா குழு</li>
-
-<li>மறைக்கல்வி ஆசிரியர்கள் மற்றும் மாணவர்கள்</li> 
-      
-  </u1>
-    </div>
-
-  
-  <!--HOLY MASS -->
-  
-<div id="Holy mass" class="section">
-  <h2>Holy mass</h2>
-  <div class="Holy mass">
-    <u1> 
-      
-    <li> ஞாயிறு திருப்பலி  7.30-9.15 Am</li>
-
-<li> திங்கள்- வெள்ளி 6:30 - 8:00 Pm</li>
-
-<li> மாதத்தின் முதல் வெள்ளி சவேரியார் நவநாள் திருப்பலி </li>
-
-<li> அன்பிய திருப்பலிகள் </li>
-    </u1>
-  </div>
-    <!--FESTIVAL -->
-  
-<div id="Festival" class="section">
-  <h2>Festival</h2>
-  <div class="Festival">
-    <u1> 
-      
-    <li> புதுமை புனிதர் சவேரியார் திருவிழா மற்றும் அன்னதான திருவிழா( டிசம்பர் மாதம்)</li>
-
-<li> கிறிஸ்து பிறப்பு கிறிஸ்துமஸ் பெருவிழா( டிசம்பர் மாதம்) </li>
-
-<li> மாதா திருவிழா ( மே மாதம்)</li>
-
-<li> ஈஸ்டர் </li>
-    </u1>
-  </div>
-      
- 
 
 <!-- POPUP -->
 <div id="popup" onclick="closeImg()">
@@ -413,7 +315,7 @@ body{
 <!-- FOOTER -->
 <div class="footer">
   © 2026 St Xavier Church MKP
-  <li>yonasweb company</li>
+  yonasweb company
 </div>
 
 <script>
@@ -422,15 +324,23 @@ function scrollToSection(id){
 }
 
 function openImg(src){
-  document.getElementById("popup").style.display="block";
+  document.getElementById("popup").style.display="flex";
   document.getElementById("full").src = src;
 }
 
 function closeImg(){
   document.getElementById("popup").style.display="none";
 }
+
+const sections=document.querySelectorAll('.section');
+window.addEventListener('scroll',()=>{
+  sections.forEach(sec=>{
+    if(sec.getBoundingClientRect().top<window.innerHeight-100){
+      sec.classList.add('show');
+    }
+  });
+});
 </script>
 
 </body>
 </html>
-
