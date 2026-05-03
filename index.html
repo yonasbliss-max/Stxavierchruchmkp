@@ -1,31 +1,4 @@
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
-
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyAuScBB-T6jX21iG8AKTZLKNdunTePrB2Q",
-  authDomain: "chruch-web.firebaseapp.com",
-  databaseURL: "https://chruch-web-default-rtdb.firebaseio.com/",
-  projectId: "chruch-web",
-  storageBucket: "chruch-web.firebasestorage.app",
-  messagingSenderId: "895101811346",
-  appId: "1:895101811346:web:89019a7667fff3bbe7444b"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-
-// View count logic
-let countRef = db.ref("views");
-
-countRef.once("value", (snap) => {
-  let count = snap.val() || 0;
-  count++;
-  countRef.set(count);
-  document.getElementById("viewCount").innerText = count;
-});
-</scripts<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
