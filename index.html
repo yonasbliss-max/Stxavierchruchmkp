@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Church</title>
+<title>stxavierChurchmkp</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -158,13 +158,11 @@ body{
 
   <div class="menu">
     <button class="btn" onclick="openScreen('history')">ஆலய வரலாறு</button>
-    <button class="btn" onclick="openScreen('Holymass')">திருப்பலி</button>
     <button class="btn" onclick="openScreen('gallery')">புகைப்படங்கள்</button>
-    <button class="btn" onclick="openScreen('festival')">திருவிழா</button>
     <button class="btn" onclick="openScreen('groups')">ஆலய குழுக்கள்</button>
-    
+    <button class="btn" onclick="openScreen('Holy mass')">திருப்பலி</button>
    
-  </div>
+      </div>
 </div>
 
 <!-- SCREENS -->
@@ -175,29 +173,11 @@ body{
   <p>உன் history இங்க paste பண்ணு</p>
 </div>
 
-<div id="mass" class="screen">
+<div id="groups" class="screen">
   <div class="back" onclick="goBack()">⬅ Back</div>
-  <h2>Mass</h2>
-</div>
-
-<div id="gallery" class="screen">
-  <div class="back" onclick="goBack()">⬅ Back</div>
-  <h2>Gallery</h2>
-
-  <div class="gallery">
-    <img src="mkp1.webp">
-    <img src="mkp2.webp">
-    <img src="mkp3.webp">
-  </div>
-</div>
-  <!-- GROUPS-->
-  
-<div id="groups" class="section">
   <h2>groups</h2>
-  <div class="groups">
-    <u1> 
-      
-    <li>சவேரியார் அன்பியம்</li>
+
+     <li>சவேரியார் அன்பியம்</li>
 
 <li>அருளானந்தர் அன்பியம்</li>
 
@@ -236,16 +216,11 @@ body{
 <li>மறைக்கல்வி ஆசிரியர்கள் மற்றும் மாணவர்கள்</li> 
       
   </u1>
-    </div>
+</div>
 
-  
-  <!--HOLY MASS -->
-  
-<div id="Holy mass" class="section">
-  <h2>Holy mass</h2>
-  <div class="Holy mass">
-    <u1> 
-      
+  <div id="Holy mass" class="screen">
+  <div class="back" onclick="goBack()">⬅ Back</div>
+  <h2>Mass</h2>
     <li> ஞாயிறு திருப்பலி  7.30-9.15 Am</li>
 
 <li> திங்கள்- வெள்ளி 6:30 - 8:00 Pm</li>
@@ -255,22 +230,23 @@ body{
 <li> அன்பிய திருப்பலிகள் </li>
     </u1>
   </div>
-    <!--FESTIVAL -->
+    
   
-<div id="Festival" class="section">
-  <h2>Festival</h2>
-  <div class="Festival">
-    <u1> 
-      
-    <li> புதுமை புனிதர் சவேரியார் திருவிழா மற்றும் அன்னதான திருவிழா( டிசம்பர் மாதம்)</li>
 
-<li> கிறிஸ்து பிறப்பு கிறிஸ்துமஸ் பெருவிழா( டிசம்பர் மாதம்) </li>
 
-<li> மாதா திருவிழா ( மே மாதம்)</li>
+<div id="gallery" class="screen">
+  <div class="back" onclick="goBack()">⬅ Back</div>
+  <h2>Gallery</h2>
 
-<li> ஈஸ்டர் </li>
-    </u1>
+  <div class="gallery">
+    <img src="mkp1.webp">
+    <img src="mkp2.webp">
+    <img src="mkp3.webp">
   </div>
+</div>
+  <!-
+  
+    
 
 
 
