@@ -458,38 +458,5 @@ function closeImg(){
 }
 </script>
 
-<p>👁 Views: <span id="viewCount">0</span></p>
-
-<!-- Firebase v8 (IMPORTANT) -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
-<script>
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "chruch-web.firebaseapp.com",
-  databaseURL: "https://chruch-web-default-rtdb.firebaseio.com/",
-  projectId: "chruch-web",
-  storageBucket: "chruch-web.appspot.com",
-  messagingSenderId: "895101811346",
-  appId: "1:895101811346:web:89019a7667ff3bbe7444b"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-
-// View count logic
-let countRef = db.ref("views");
-
-countRef.once("value", function(snapshot) {
-  let count = snapshot.val() || 0;
-  count++;
-  countRef.set(count);
-
-  document.getElementById("viewCount").innerText = count;
-});
-</script>
-
 </body>
 </html>
