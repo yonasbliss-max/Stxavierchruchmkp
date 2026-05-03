@@ -61,6 +61,28 @@ body{
   width:30px;
   margin-left:10px;
 }
+  /* HERO */
+.hero{
+  height:100vh;
+  background:url('menu3.png') center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:40px;
+}
+
+.hero button{
+  margin-top:20px;
+  padding:12px 25px;
+  border:none;
+  background:gold;
+  border-radius:25px;
+  cursor:pointer;
+}
 
 /* MENU */
 .menu{
@@ -159,8 +181,12 @@ body{
   <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png"
        style="width:30px; margin-left:10px; cursor:pointer;">
     </a>
+    
+    <!-- HERO -->
 
-  <div class="menu">
+<div id="home" class="hero"> <div>
+
+  
     <button class="btn" onclick="openScreen('history')">ஆலய வரலாறு</button>
     <button class="btn" onclick="openScreen('gallery')">புகைப்படங்கள்</button>
     <button class="btn" onclick="openScreen('groups')">ஆலய குழுக்கள்</button>
@@ -248,18 +274,8 @@ body{
     <img src="mkp3.webp">
   </div>
 </div>
-  <!-
   
-    
-
-
-
-<div id="groups" class="screen">
-  <div class="back" onclick="goBack()">⬅ Back</div>
-  <h2>Groups</h2>
-</div>
-
-<div id="contact" class="screen">
+  <div id="contact" class="screen">
   <div class="back" onclick="goBack()">⬅ Back</div>
   <h2>Contact</h2>
 </div>
