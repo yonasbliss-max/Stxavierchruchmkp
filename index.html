@@ -1,345 +1,184 @@
 <!DOCTYPE html>
-<html>
+<html lang="ta">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>St Xavier Church Melainagar</title>
+
+<title>St Xavier Church</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   font-family:sans-serif;
-  background:linear-gradient(135deg,#000,#0f0c29,#1a1a2e);
+  background:black;
   color:white;
-  overflow-x:hidden;
-  scroll-behavior:smooth;
+  overflow:hidden;
 }
 
-/* BACKGROUND GLOW */
-body::before{
-  content:'';
+/* 🔥 LOGO ENTRY */
+#intro{
   position:fixed;
   width:100%;
   height:100%;
-  background:radial-gradient(circle at 30% 30%, rgba(0,255,255,0.15), transparent 40%),
-             radial-gradient(circle at 70% 70%, rgba(255,0,255,0.1), transparent 40%);
-  z-index:-1;
-}
-
-/* NAVBAR */
-.navbar{
-  position:fixed;
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  padding:15px 30px;
-  background:rgba(0,0,0,0.4);
-  backdrop-filter:blur(15px);
-  z-index:1000;
-}
-
-.navbar span{
-  margin-left:15px;
-  cursor:pointer;
-}
-.navbar span:hover{
-  color:cyan;
-}
-
-/* HERO */
-.hero{
-  height:100vh;
-  background:url('menu3.png') center/cover no-repeat;
+  background:black;
   display:flex;
   justify-content:center;
   align-items:center;
-  text-align:center;
-  position:relative;
+  z-index:9999;
+  animation:fadeOut 1s ease 2.5s forwards;
 }
 
-.hero::after{
-  content:'';
+#intro img{
+  width:120px;
+  animation:zoom 1.5s ease;
+}
+
+@keyframes zoom{
+  from{transform:scale(0);}
+  to{transform:scale(1);}
+}
+
+@keyframes fadeOut{
+  to{opacity:0;visibility:hidden;}
+}
+
+/* SCREENS */
+.screen{
   position:absolute;
   width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.6);
+  height:100vh;
+  top:0;
+  left:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  transition:0.6s;
 }
 
-.hero h1{
-  font-size:40px;
-  z-index:1;
-  text-shadow:0 0 20px gold;
+.screen.active{
+  left:0;
 }
 
-.hero button{
+.screen.exit{
+  left:-100%;
+}
+
+/* HOME */
+#home{
+  left:0;
+  background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+}
+
+/* BUTTONS */
+.btn{
   margin:10px;
-  padding:12px 25px;
+  padding:15px 30px;
   border:none;
-  border-radius:25px;
+  border-radius:30px;
   background:rgba(255,255,255,0.1);
   color:white;
+  font-size:16px;
   backdrop-filter:blur(10px);
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 20px cyan;
+}
+
+/* BACK BUTTON */
+.back{
+  position:absolute;
+  top:20px;
+  left:20px;
+  font-size:20px;
   cursor:pointer;
 }
 
-.hero button:hover{
-  box-shadow:0 0 20px cyan;
-  transform:scale(1.1);
-}
-
-/* SECTION */
-.section{
-  padding:80px 20px;
-  text-align:center;
-  opacity:0;
-  transform:translateY(50px);
-  transition:1s;
-}
-
-.section.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* HISTORY */
-.history{
+/* CONTENT */
+.content{
   max-width:800px;
-  margin:auto;
-  line-height:1.8;
-}
-
-/* CARDS */
-.card{
-  display:inline-block;
-  width:250px;
-  margin:15px;
+  text-align:center;
   padding:20px;
-  background:rgba(255,255,255,0.1);
-  border-radius:20px;
-}
-.card:hover{
-  box-shadow:0 0 20px gold;
 }
 
 /* GALLERY */
 .gallery{
   display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
+  overflow-x:auto;
+  gap:10px;
 }
 
 .gallery img{
   width:200px;
-  margin:10px;
   border-radius:15px;
-  cursor:pointer;
 }
 
-.gallery img:hover{
-  transform:scale(1.1);
-  box-shadow:0 0 20px cyan;
-}
-
-/* POPUP */
-#popup{
-  display:none;
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.95);
-  backdrop-filter:blur(10px);
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-}
-
-#popup img{
-  max-width:90%;
-  max-height:85%;
-  border-radius:20px;
-  box-shadow:0 0 40px cyan;
-}
-
-.close{
-  position:absolute;
-  top:20px;
-  right:30px;
-  font-size:30px;
-  cursor:pointer;
-}
-
-/* FOOTER */
-.footer{
-  padding:20px;
-  background:black;
-  text-align:center;
-}
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <h3>God Bless You</h3>
-  <div>
-    <span onclick="scrollToSection('home')">Home</span>
-    <span onclick="scrollToSection('history')">History</span>
-    <span onclick="scrollToSection('gallery')">Gallery</span>
+<!-- 🔥 LOGO -->
+<div id="intro">
+  <img src="loho.mp4">
+</div>
+
+<!-- 🏠 HOME -->
+<div id="home" class="screen active">
+  <h1>புனித சவேரியார் ஆலயம்</h1>
+
+  <button class="btn" onclick="openScreen('history')">ஆலய வரலாறு</button>
+  <button class="btn" onclick="openScreen('gallery')">புகைப்படங்கள்</button>
+  <button class="btn" onclick="openScreen('mass')">திருப்பலி</button>
+</div>
+
+<!-- 📖 HISTORY -->
+<div id="history" class="screen">
+  <div class="back" onclick="goBack()">⬅</div>
+  <div class="content">
+    <h2>History</h2>
+    <p>உன் full history text இங்க paste பண்ணு</p>
   </div>
 </div>
 
-<!-- HERO -->
-<div id="home" class="hero">
-  <div>
-    <h1>புனித சவேரியார் ஆலயம் மேலைநகர்</h1>
-    <button onclick="scrollToSection('history')">ஆலய வரலாறு</button>
-    <button onclick="scrollToSection('gallery')">புகைப்படங்கள்</button>
-    <button onclick="scrollToSection('groups')">ஆலய குழுக்கள்</button>
-  </div>
-</div>
-
-<!-- HISTORY -->
-<div id="history" class="section">
-  <h2>History</h2>
-  <div class="history">
-    <p>
-   சங்கத்தமிழ் வளர்த்த மதுரை மாநகரின் மேற்பகுதியில், மஞ்சளாறு, மருதாநதி, வைகை போன்ற நதிகளால் வளம்கொழித்து பச்சைப்பசேலென கண்களுக்கு விருந்தளித்து, வெற்றிலைக்குப் பெயர்போன வத்தலக்குண்டின் அருகில், இறைவழிபாட்டில் சிறந்து, கோயில்கள் பலவற்றைத் தன்னகத்தே கொண்ட, மேலக்கோவில்பட்டி என அழைக்கப்படும் புண்ணிய பூமியில், உலகம் போற்றும் புனிதர், நமது இந்தியத் திருநாட்டின் மறைபணியாளர் புனித பிரான்சிஸ் சவேரியார், படை வீரர்களுக்கு பாதுகாவலராய், காலரா போன்ற உயிர்க்கொல்லி நோய் தீர்க்கும் மருத்துவராய், இன்னவரம் வேண்டுமென்று என்ன வரம் கேட்டாலும் உவப்புடன் நிறைவேற்றி வரும் மேலக்கோவில்பட்டி புனித பிரான்சிஸ் சவேரியார் ஆலயம் மற்றும் ஊர் பற்றிய கண்ணோட்டம்.
-
-சுமார் 250 ஆண்டுகளுக்கு முன்பு தமிழ்நாட்டின் நெற்களஞ்சியம் என அழைக்கப்படும் தஞ்சை மாவட்டம், மும்மாரி முறை தவறி அளவுக்கு அதிகமாக பொழிந்ததால், சோறுடை நாடு தஞ்சை கண்ணுக்கு எட்டிய தூரம்வரை மழை நீரால் மூழ்கியது. அதனால் மக்களின் இயல்பு வாழ்க்கை பாதிக்கப்பட்டது. எனவே அவர்கள் தங்களின் நிலபுலன்கள், உடைமைகள் அனைத்தையும் விட்டுவிட்டு வாழ்வதற்குத் தகுந்த சூழல் உள்ள இடம் தேடிச் சென்றனர்
-
-ஆண்டவரால் தேர்ந்தெடுக்கப்பட்டு அவரது அருள் பெற்ற இனமாக திகழ்ந்தவர் திருக்காட்டுப்பள்ளி இராஜேந்திர நாட்டாழ்வார். இவர் தனது மனைவி மற்றும் நான்குமைந்தர்களை (நல்லதம்பி, கூலன், முத்தப்பன், சின்னத்தம்பி அழைத்துக்கொண்டு இஸ்ரயேல் மக்களுக்கு இறைவன் காட்டிய கானான் தேசம் போன்று பசுமையோடு சிறுசிறு குன்றுகளுடன் நீர்வளமும் நிலவளமும் நிறைந்து கண்களுக்கு விருந்தளித்த தற்போது மேலக்கோவில்பட்டி என அழைக்கப்படும் இடத்தில் குடிபுகுந்தனர்.
-
-ஆரம்ப காலகட்டத்தில் விவசாயம், கால்நடைகளை வளர்த்தல் மற்றும் கூலித்தொழில் போன்றவற்றை செய்து வந்தனர். பிற்காலத்தில் கோட்டை மந்தை அரண்மனையில் வாழ்ந்த ஜமீன்தாரிடம் வேலை செய்தனர். ஜமீன்தார் இக்குடும்பத்தின் மீது வைத்திருந்த நன்மதிப்பின் காரணமாக நல்லதம்பி நாட்டாழ்வாருக்கு (மூத்த மகன்) நாட்டாமை வேலையும் வழங்கியுள்ளார்.
-
-கடவுள் மீது நம்பிக்கை கொண்ட கிறிஸ்தவ மதத்தை சார்ந்த சவரிமூப்பன் என்பவரும் மேலக்கோவில்பட்டியில் குடியேறினார். இம்மக்களுக்கு இது ஒரு பொற்காலம் என்றே கூற வேண்டும். இவருடைய வழிகாட்டுதலின் பேரிலும் அருட்தந்தையரின் உதவியுடன் இந்துக்களாக இருந்த மக்கள் கிறிஸ்தவ மதத்திற்கு தாமாக மதம் மாறினர். பின்னர் இவர்கள் அருட்தந்தையர்களால் நல்வழிப்படுத்தப்பட்டனர்.
-
-மேலும் தங்களுடைய ஆன்மீக காரியங்களுக்கு சிலுக்குவார்பட்டி பங்கை நாடிச்சென்றனர். அதன்பிறகு புனித சவேரியாரை ஊரின் பாதுகாவலராக தேர்வு செய்து ஒரு பெரிய கிறிஸ்தவ சமூகமாக உருவெடுத்து ஊரில் கூரையிலான சவேரியார் சிற்றாலயம் ஒன்றும் அமைக்கப்பட்டது. (தற்போது பெரிய ஆலயத்திற்கு எதிர்புறமாக அமைந்துள்ள சிறிய கோவில்சிலுக்குவார்பட்டி பங்கிலிருந்து தனிப்பங்காக உருவாக்க முயற்சிகள் மேற்கொள்ளப்பட்டது. ஆனால் இங்கு போக்குவரத்து வசதி இல்லாத காரணத்தால் முயற்சிகள் கைவிடப்பட்டு வத்தலக்குண்டு பங்காக உருவாக்கப்பட்டது.
-
-எதிர்பாராத விதமாக கூரையினாலான சிறிய கோவிலானது தீப்பற்றி எரிந்தது. ஆனால் அங்கிருந்த சுரூபங்கள் மட்டும் பொதுமக்களால் பாதுகாப்பாக மீட்கப்பட்டது. கோயிலை இழந்த மக்கள் தங்களது வருத்தத்தை கோம்பைப்பட்டி ஜமீன்தாரிடம் எடுத்துக் கூறி கோயில் கட்டுவதற்கான இடமும் அதற்கான மூலதனமும் கேட்டு வேண்டுதல் வைத்தனர். மக்களின் மனநிலையை புரிந்த ஜமீன்தார் அவர்கள் 4 ஏக்கர், 27 சென்ட் இடம் கொடுத்தார். தற்போதுள்ள பள்ளிக்கூடம் மற்றும் அதனைச்சுற்றியுள்ள பகுதியும் இதில் அடங்கும்.
-
-பெரிய ஆலய வரலாறு
-
-வத்தலக்குண்டு பங்குத்தந்தை P.S. அந்தோனி அவர்கள் முயற்சியால் 1948-ம் ஆண்டு பொதுமக்களின் ஒத்துழைப்போடு கருங்கல்,கடுக்காய், ஆற்றுமணல், சுண்ணாம்பு போன்ற கலவையினால் புனித சவேரியார் ஆலயம் - பெரிய கோயில் கட்டப்பட்டது.
-
-பங்குத்தந்தை P.S. அந்தோனி அடிகளார் அவர்களுக்கு பிறகு வத்தலக்குண்டு இரண்டாவது பங்குத்தந்தையாக இருந்த அருட்தந்தை சைமன் சிக்கார்டு சே.ச அவர்கள் மேலக்கோவில்பட்டி பொதுமக்களை ஆன்மீக காரியங்களில் மட்டுமின்றி அனைத்து நன்னெறி வழிகளிகளிலும் மக்களை ஒருங்கிணைத்து ஒரு கட்டுக்கோப்பான கிறிஸ்தவ சமூகமாக வாழ நல்வழிப்படுத்தினார்கள். இன்றும் ஊர்மக்களால் இவருடைய நற்செயல்கள் பாராட்டிப் பேசப்படுகிறது. பின்வந்த அருட்தந்தையர்களும் மக்களை இறைபக்தியில் சிறப்புற வழிநடத்தினார்கள்.
-
-1973-ம் ஆண்டு காற்று மற்றும் பலத்த மழையின் காரணமாக ஆலயத்தின் மேற்கூரை சேதமடைந்து மீண்டும் ஊர்மக்களுடைய உதவியோடு மேற்கூரை சரிசெய்யப்பட்டு அதோடு கோவில் தளமும் போடப்பட்டது. 1998-ஆம் ஆண்டு அருட்பணி ஞானப்பிரகாசம் மற்றும் அருட்பணி பீட்டர்ராய் இவர்களின் முயற்சியால் சேதமடைந்த ஓடுகளாலான மேற்கூரை அகற்றப்பட்டு, கன்கிரீட் மேற்கூரை போடப்பட்டு இன்றுவரை ஆலயமானது பராமரிக்கப்பட்டு வருகிறது.
-
-வத்தலக்குண்டு 14-வது பங்குத்தந்தையாக இருந்த
-
-அருட்பணிலூயிஸ் அடிகளார் அவர்கள் அன்பியங்களை உருவாக்கி, தொடர் திருப்பலி நிறைவேற்றியும், இறைமக்களை ஆன்மீகப் பாதையில் வழிநடத்தினார். 2008-ஆம் வருடம் தேவலாயப் பராமரிப்பு, கோவிலுக்குச் சொந்தமான 4 ஏக்கர், 27 சென்ட் நிலத்தையும் அளவீடு (Survey) செய்து கம்பி வேலி போட்டு சிறப்பானதொரு நற்செயல்களை மேம்படுத்தினார்கள்.
-
-புனித சவேரியார் சிற்றாலய வரலாறு
-
-1974-ஆம் ஆண்டு பழைய சவேரியார் சிற்றாலயம் (தீயினால் சேதமடைந்த) இருந்த இடத்தில் ஒரு சிறிய சிலுவைத் திண்ணை அமைக்கப்பட்டது. அத்திண்ணை 1976-ஆம் ஆண்டு திரு. M. போதகர் நாட்டாமை அவர்களின் முயற்சியால் சிற்றாலயமாக அமைக்கப்பட்டது.
-
-2001-ஆம் ஆண்டு இந்த சிற்றாலயமானது திரு. M. ஜெயப்பிரகாஷ் என்பவரது முயற்சியால் ஊர் மக்களின்
-
-ஒத்துழைப்போடு சிற்றாலயமானது கோபுரமாக உயர்த்தப்பட்டு மணிக்கூண்டு நிறுவப்பட்டது.
-
-03.12.2004 ஆம் ஆண்டு ஊரின் முகவாயிலில் திரு. M. பிச்சை அவர்களின் முயற்சியால் ஒரு சிறிய சவேரியார் கெபி அமைக்கப்பட்டு அருட்பணி லூயிஸ் அடிகளார் அவர்களால் ஆசிர்வதிக்கப்பட்டது.
-
-மேலக்கோவில்பட்டி மக்களின் ஆன்மீக வாழ்வின் அடுத்த கட்டமாக 2000-ம் ஆண்டில் இளைஞர்கள் ஒன்றிணைந்து டிசம்பர் 3-ம் தேதி புனித சவேரியார் திருநாளை அன்னதானம் வழங்கி விழாவினை கொண்டாடினார்கள். தொடர்ந்து திருவிழாவை ஊர்ப் பொதுமக்கள் ஒன்றிணைந்து புனித சவேரியாரின் நல்லாசியோடு சவேரியார் அன்னதான விழாவாக சிறப்பாகக் கொண்டாடி வருகிறார்கள்.
-
-தற்போது திருத்தல திருப்பணிக்குழு, நற்செய்திப் பணிக்குழு, அன்னதானக்குழு, அன்பியங்கள் போன்ற ஆன்மீக வழிபாட்டுக் குழுக்கள் தோன்றி சிறப்புடன் செயல்பட்டு வருகின்றன.
-
-இறை அழைத்தல்
-
-1973-ஆம் ஆண்டு இங்கு பிறந்து வளர்ந்த சிகாமணி அவர்கள் ஏசு சபையில் சேர்ந்து ஊரின் முதல் குருவாக பட்டம் பெற்றார்.
-
-பங்கு உதயம்
-
-2018-ம் ஆண்டு ஆகஸ்ட் மாதம் 4-ம் தேதி மேலக்கோவில்பட்டி பகுதியை வத்தலக்குண்டு பங்கில் இருந்து பிரித்து மதுரை உயர் மறை மாவட்டத்தின் 75-வது புதிய பங்காக மேதகு பேராயர் பேரருட்திரு. A. அந்தோணி பாப்புசாமி DD., STD அவர்களால் உருவாக்கப்பட்டது.
-
-புனித அருளால் சவேரியாருடைய மேலக்கோவில்பட்டியில் அதிகப்படியான நபர்கள் இராணுவத்தில் சேர்ந்து நாட்டை பாதுகாக்கும் பணியில் உள்ளனர். இதுவரையில் அவர்களுக்கு எந்தவித தீங்கும், பாதிப்புகளும் நிகழாமலும், போரின் போது இதுவரையில் அவர்களுக்கு உயிர் சேதமின்றியும். பாதுகாப்பு அளித்து சவேரியார் துணை நிற்பதாக ஒவ்வொரு இராணுவத்தினரும் மனப்பூர்வமாக அனுபவித்து உணர்கிறார்கள்.
-
-கோவிலுக்கு வந்து சவேரியாரிடம் வைக்கப்படும் அனைத்து விண்ணப்பங்களும் முழுமையாக நிறைவேறுகிறது. மாணவர்கள், நோயுற்றோர், வேலை தேடும் இளைஞர்களுடைய விண்ணப்பங்கள் அனைத்தும் நிறைவேற்றப்பட்டும், ஊரில் தீய சக்திகள் அழிக்கப்பட்டு, ஊர் பொருளாதாரத்தில் முன்னேற்றமடைந்து சிறப்புறக் காரணம் புனித சவேரியாருடைய புதுமையே.
-    </p>
-  </div>
-</div>
-
-<!-- GALLERY -->
-<div id="gallery" class="section">
+<!-- 🖼️ GALLERY -->
+<div id="gallery" class="screen">
+  <div class="back" onclick="goBack()">⬅</div>
   <h2>Gallery</h2>
 
   <div class="gallery">
-      
-    <img src="DDIZTuZT3u7(WEBP)_2.webp">
-<img src="DDIZTuZT3u7(WEBP)_3.webp">
-<img src="DDIZTuZT3u7(WEBP)_4.webp">
-<img src="DDIZTuZT3u7(WEBP)_5.webp">
-<img src="DDIZTuZT3u7(WEBP)_6.webp">
-<img src="DDIZTuZT3u7(WEBP)_7.webp">
-<img src="DDIZTuZT3u7(WEBP)_8.webp">
-<img src="DDIZTuZT3u7(WEBP)_9.webp">
-
-<img src="DR0ihTKkp-Q(WEBP).webp">
-<img src="DR0ihTKkp-Q(WEBP)_1.webp">
-<img src="DR0ihTKkp-Q(WEBP)_2.webp">
-<img src="DR0ihTKkp-Q(WEBP)_3.webp">
-<img src="DR0ihTKkp-Q(WEBP)_4.webp">
-    <img src="images/Cs50IPEyzQy(WEBP).webp">
-<img src="CsoR_RFyYko(WEBP).webp">
-<img src="CsoR_RFyYko(WEBP)_2.webp">
-<img src=CsoR_RFyYko(WEBP)_3.webp">
-<img src="CsoR_RFyYko(WEBP)_4.webp">
-<img src="CsoR_RFyYko(WEBP)_5.webp">
-<img src="CsoR_RFyYko(WEBP)_6.webp">
-<img src="CsrltcgSNSY(WEBP).webp">
-<img src="CsrItcgSNSY(WEBP).webp">
-<img src="CtzBLAWyquU(WEBP).webp">
     <img src="mkp1.webp">
-<img src="mkp2.webp">
-<img src="mkp3.webp">
-<img src="mkp4.webp">
-<img src="mkp5.webp">
-<img src="mkp6.jpg">
-<img src="mkp8.jpg">
-    <img src="mkp7.jpg">
-<img src="mkp9.jpg">
-    <img src="mkp10.jpg">
-
-      </div>
-
+    <img src="mkp2.webp">
+    <img src="mkp3.webp">
   </div>
 </div>
 
-<!-- POPUP -->
-<div id="popup" onclick="closeImg()">
-  <span class="close">✖</span>
-  <img id="full">
-</div>
-
-<!-- FOOTER -->
-<div class="footer">
-  © 2026 St Xavier Church MKP
-  yonasweb company
+<!-- ⛪ MASS -->
+<div id="mass" class="screen">
+  <div class="back" onclick="goBack()">⬅</div>
+  <h2>Holy Mass</h2>
+  <p>திருப்பலி நேரங்கள் இங்க</p>
 </div>
 
 <script>
-function scrollToSection(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+let current="home";
+
+function openScreen(id){
+  document.getElementById(current).classList.add("exit");
+  document.getElementById(id).classList.add("active");
+  current=id;
 }
 
-function openImg(src){
-  document.getElementById("popup").style.display="flex";
-  document.getElementById("full").src = src;
+function goBack(){
+  document.querySelector(".screen.active").classList.remove("active");
+  document.getElementById(current).classList.remove("exit");
+  current="home";
 }
-
-function closeImg(){
-  document.getElementById("popup").style.display="none";
-}
-
-const sections=document.querySelectorAll('.section');
-window.addEventListener('scroll',()=>{
-  sections.forEach(sec=>{
-    if(sec.getBoundingClientRect().top<window.innerHeight-100){
-      sec.classList.add('show');
-    }
-  });
-});
 </script>
 
 </body>
