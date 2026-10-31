@@ -1071,13 +1071,18 @@ nav.bottom{
 .feast-slide:nth-child(3) { animation-delay: 18s; }
 .feast-slide:nth-child(4) { animation-delay: 30s; }
 
-@keyframes feastPop {
+   @keyframes feastPop {
     0% {
         opacity: 0;
         transform: translateX(100%);
     }
 
-    15%, 75% {
+    15% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    75% {
         opacity: 1;
         transform: translateX(0);
     }
@@ -1086,6 +1091,7 @@ nav.bottom{
         opacity: 0;
         transform: translateX(-100%);
     }
+   
 
 }
 .feast-firework {
