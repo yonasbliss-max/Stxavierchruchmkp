@@ -20,6 +20,8 @@
 
 <style>
 
+   
+
 /* =====================================================
    RESET
 ===================================================== */
@@ -1002,6 +1004,105 @@ nav.bottom{
 
    /* ===== HERO CARD GLASS + CENTER ONLY ===== */
 
+   /* FESTIVAL ANNOUNCEMENT BOX */
+
+.feast-announcement {
+    position: absolute;
+    top: 158px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(560px, calc(100% - 32px));
+    height: 68px;
+    padding: 7px 14px;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid rgba(255,225,220,.55);
+    border-radius: 16px;
+    background: linear-gradient(
+        120deg,
+        rgba(54,5,15,.96),
+        rgba(112,20,38,.92),
+        rgba(54,5,15,.96)
+    );
+    box-shadow: 0 7px 22px rgba(0,0,0,.35);
+    z-index: 8;
+}
+
+.feast-heading {
+    position: relative;
+    z-index: 3;
+    color: #fff0e9;
+    font-size: 12px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.feast-slides {
+    position: relative;
+    height: 32px;
+    margin-top: 2px;
+    z-index: 3;
+}
+
+.feast-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+    opacity: 0;
+    animation: feastPop 12s ease-in-out infinite;
+}
+
+.feast-slide:nth-child(1) { animation-delay: 0s; }
+.feast-slide:nth-child(2) { animation-delay: 3s; }
+.feast-slide:nth-child(3) { animation-delay: 6s; }
+.feast-slide:nth-child(4) { animation-delay: 9s; }
+
+@keyframes feastPop {
+    0%,100% {
+        opacity: 0;
+        transform: translateY(9px) scale(.88);
+    }
+    8%,21% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.feast-firework {
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #ffe4a1;
+    box-shadow:
+        0 0 8px 3px #ffcf80,
+        12px -8px 2px #ffb5a0,
+        -11px -9px 2px #fff0b0,
+        14px 8px 2px #ffc080,
+        -13px 8px 2px #ffe0a0;
+    animation: fireworkPop 2s infinite;
+    pointer-events: none;
+}
+
+@keyframes fireworkPop {
+    0%,100% {
+        opacity: 0;
+        transform: scale(.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
 .hero-card {
     position: relative;
     left: 50%;
@@ -1587,9 +1688,40 @@ nav.bottom{
         <span class="butterfly">🦋</span>
 
         </div>
-    
+
+  
 
     <div class="hero-card">
+
+       <div class="feast-announcement">
+
+    <div class="feast-heading">
+        ✦ புனித சவேரியார் திருவிழா – 2026 ✦
+    </div>
+
+    <div class="feast-slides">
+
+        <div class="feast-slide">
+            27ஆம் ஆண்டு அன்னதானப் பெருவிழா
+        </div>
+
+        <div class="feast-slide">
+            9ஆம் ஆண்டு பங்குத் திருவிழா – 2026
+        </div>
+
+        <div class="feast-slide">
+            நவம்பர் 27 – புனித சவேரியாரின் கொடியேற்றம்
+        </div>
+
+        <div class="feast-slide">
+            நவம்பர் 3, 2026 – புனித சவேரியார் திருவிழா
+        </div>
+
+    </div>
+
+    <span class="feast-firework"></span>
+
+       </div>
 
         <h1 class="hero-title">
             St. Xavier's Church
