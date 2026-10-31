@@ -1055,7 +1055,7 @@ nav.bottom{
     font-weight: 800;
     text-align: center;
     opacity: 0;
-    animation: feastPop 12s ease-in-out infinite;
+    animation: feastPop 32s ease-in-out infinite;
 }
    .feast-slide {
     width: 100%;
@@ -1072,15 +1072,21 @@ nav.bottom{
 .feast-slide:nth-child(4) { animation-delay: 30s; }
 
 @keyframes feastPop {
-    0%, 100% {
+    0% {
         opacity: 0;
-        transform: translateY(9px) scale(.88);
+        transform: translateX(100%);
     }
 
-    8%, 21% {
+    15%, 75% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateX(0);
     }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
 }
 .feast-firework {
     position: absolute;
